@@ -1,0 +1,57 @@
+(c) Copyright IBM Corporation 1993,2007
+Command Line Processor for DB2 Client 11.5.8.0
+
+You can issue database manager commands and SQL statements from the command 
+prompt. For example:
+    db2 => connect to sample
+    db2 => bind sample.bnd
+
+For general help, type: ?.
+For command help, type: ? command, where command can be
+the first few keywords of a database manager command. For example:
+ ? CATALOG DATABASE for help on the CATALOG DATABASE command
+ ? CATALOG          for help on all of the CATALOG commands.
+
+To exit db2 interactive mode, type QUIT at the command prompt. Outside 
+interactive mode, all commands must be prefixed with 'db2'.
+To list the current command option settings, type LIST COMMAND OPTIONS.
+
+For more detailed help, refer to the Online Reference Manual.
+
+db2 => db2 => db2 => db2 => db2 => CONNECT TO cs421
+
+   Database Connection Information
+
+ Database server        = DB2/LINUXX8664 11.5.8.0
+ SQL authorization ID   = CS421G31
+ Local database alias   = CS421
+
+
+db2 => db2 => db2 => db2 => db2 => db2 => db2 => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => CREATE TABLE Team ( country VARCHAR(30) NOT NULL, group VARCHAR(10), associationName VARCHAR(30), associationURL VARCHAR(30), numberOfGoalsScored INTEGER, PRIMARY KEY(country) )
+DB20000I  The SQL command completed successfully.
+
+db2 => db2 => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => CREATE TABLE Player ( pid VARCHAR(20) NOT NULL, shirtNumber INTEGER, name VARCHAR(30), DOB DATE, position VARCHAR(10), timeLeft TIME, timeEntered TIME, redCard BOOLEAN, yellowCards INTEGER, country VARCHAR(30), matchesPlayed INTEGER, PRIMARY KEY (pid), FOREIGN KEY (country) REFERENCES TEAM(country) )
+DB20000I  The SQL command completed successfully.
+
+db2 => db2 => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => CREATE TABLE Coach ( cid VARCHAR(30) NOT NULL, name VARCHAR(30), DOB DATE, role VARCHAR(30), country VARCHAR(30), PRIMARY KEY (cid), FOREIGN KEY (country) REFERENCES Team(country) )
+DB20000I  The SQL command completed successfully.
+
+db2 => db2 => db2 => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => CREATE TABLE Referee ( rid VARCHAR(5) NOT NULL, rname VARCHAR(30), role VARCHAR(30), YOE INTEGER, country VARCHAR(30), PRIMARY KEY (rid) )
+DB20000I  The SQL command completed successfully.
+
+db2 => db2 => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => CREATE TABLE Stadium ( sname VARCHAR(30) NOT NULL, location VARCHAR(30), capacity INTEGER, PRIMARY KEY (sname) )
+DB20000I  The SQL command completed successfully.
+
+db2 => db2 => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => CREATE TABLE Match ( matchID VARCHAR(10) NOT NULL, mdate DATE, mtime TIME, round VARCHAR(10), length INTEGER, sname VARCHAR(30), team1 VARCHAR(30), team2 VARCHAR(30), rid VARCHAR(5), PRIMARY KEY (matchID), FOREIGN KEY (sname) REFERENCES Stadium(sname), FOREIGN KEY (team1) REFERENCES Team(country), FOREIGN KEY (team2) REFERENCES Team(country), FOREIGN KEY (rid) REFERENCES Referee(rid) )
+DB20000I  The SQL command completed successfully.
+
+db2 => db2 => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => CREATE TABLE Goals ( pid VARCHAR(20) NOT NULL, matchID VARCHAR(10) NOT NULL, goalNo INTEGER NOT NULL, penaltyKick BOOLEAN, timeOccured TIME NOT NULL, PRIMARY KEY (pid, matchID, goalNo), FOREIGN KEY (pid) REFERENCES Player(pid), FOREIGN KEY (matchID) REFERENCES Match(matchID) )
+DB20000I  The SQL command completed successfully.
+
+db2 => db2 => db2 => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => CREATE TABLE Purchase ( pid VARCHAR(30) NOT NULL, totalPrice DECIMAL(10,2), pdate DATE, creditCard INTEGER, matchID VARCHAR(10), PRIMARY KEY (pid), FOREIGN KEY (matchID) REFERENCES Match(matchID) )
+DB20000I  The SQL command completed successfully.
+
+db2 => db2 => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => CREATE TABLE Seat ( sname VARCHAR(30) NOT NULL, seatID INTEGER NOT NULL, price DECIMAL(10,2) NOT NULL, PRIMARY KEY (sname, seatID), FOREIGN KEY (sname) REFERENCES Stadium(sname) )
+DB20000I  The SQL command completed successfully.
+
+db2 => db2 => 
