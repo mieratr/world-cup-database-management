@@ -13,6 +13,6 @@ comprehensive statistics and insights regarding the tournament
 
 ## ER schema
 <p align="center">
-  <img src="er-schema.png" width="600">
+  <img src="er-schema.png" width="800">
 </p>
 
